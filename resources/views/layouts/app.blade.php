@@ -21,8 +21,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-lora antialiased bg-base-content text-sm min-h-screen">
-    <div x-data="{ isOpen: true }" class="flex flex-col min-h-screen">
+<body class="font-lora antialiased bg-base-content text-sm">
+    <div x-data="{ isOpen: true }" class="flex flex-col relative min-h-screen">
         <!-- Navbar -->
         @include('components.partials.navbar')
 
@@ -30,7 +30,7 @@
         @include('components.partials.sidebar')
 
         <!-- Main Content -->
-        <main :class="{'ml-64 pt-28': isOpen, 'ml-24 pt-16': !isOpen}" class="p-4">
+        <main :class="{'ml-64 pt-28': isOpen, 'ml-24 pt-16': !isOpen}" class="p-4 min-h-screen mb-20">
             <!-- Your page content here -->
             @yield('content')
         </main>
