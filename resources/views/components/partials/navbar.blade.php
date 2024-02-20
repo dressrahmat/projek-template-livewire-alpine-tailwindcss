@@ -1,11 +1,11 @@
 <div class="text-base-content z-40">
-    <div class="bg-neutral flex justify-between items-center p-1 fixed inset-x-0">
+    <div class="bg-neutral flex justify-between items-center p-1 fixed inset-x-0 px-5">
         <!-- Logo -->
-        <div class="flex items-center">
-            <div :class="{'text-2xl': isOpen, 'hidden': !isOpen}" class=" w-1/2 text-base-content px-6 my-2">
+        <div class="flex items-center justify-between">
+            <div :class="{'text-2xl': isOpen, 'hidden': !isOpen}" class=" w-1/2 text-base-content my-2">
                 <p class="text-center">Simple Projek</p>
             </div>
-            <button @click="isOpen = !isOpen" class="p-2 ml-3">
+            <button @click="isOpen = !isOpen" class="p-2 ">
                 <!-- Toggle -->
                 <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">

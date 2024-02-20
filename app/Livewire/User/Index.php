@@ -29,6 +29,8 @@ class Index extends Component
 
     public $selectedRoles = [];
 
+    public $selectedRole;
+
     public $selectedRolesIds = [];
 
     public $update = false;
@@ -46,6 +48,7 @@ class Index extends Component
         $this->email = '';
         $this->password = '';
         $this->selectedRoles = [];
+        $this->selectedRole;
     }
 
     public function updatingSearch()
@@ -182,10 +185,26 @@ class Index extends Component
 
     public function render()
     {
-        $data = User::where('name', 'like', '%'.$this->search.'%')
-                ->orWhere('email', 'like', '%'.$this->search.'%')
-                ->paginate(5);
+        $query = User::query();
         $roles = Role::get();
+        
+        if (!is_null($this->selectedRole)) {
+            $role = Role::where('name', $this->selectedRole)->first();
+            if ($role) {
+                $query->whereHas('roles', function ($q) use ($role) {
+                    $q->where('id', $role->id);
+                });
+            }
+        }
+    
+        if (!empty($this->search)) {
+            $query->where(function($query) {
+            $query->where('name', 'like', '%'.$this->search.'%')
+                ->orWhere('email', 'like', '%'.$this->search.'%');
+            });
+        }
+    
+        $data = $query->paginate(5);
 
         return view('livewire.user.index', compact(['data', 'roles']));
     }

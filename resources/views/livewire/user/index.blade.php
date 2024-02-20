@@ -24,9 +24,20 @@
                     <div class="border-l-8 border-accent px-4 py-4 my-2 bg-gray-100 shadow-md">
                         <h1 class="text-xl font-bold">Data User</h1>
                     </div>
-                    <div>
-                        <input type="text" wire:model.debounce.50ms="search" wire:keyup="refreshSearch"
-                            class="border border-gray-300 px-3 py-1 mt-2 rounded-md" placeholder="Cari...">
+                    <div class="flex flex-col gap-y-1">
+                        <div>
+                            <input type="text" wire:model.debounce.50ms="search" wire:keyup="refreshSearch"
+                                class="border border-gray-300 px-3 py-1 mt-2 rounded-md" placeholder="Cari...">
+                        </div>
+                        <div>
+                            <select class="select select-primary w-full rounded-md bg-gray-100" wire:model="selectedRole" wire:change="refreshSearch">
+                                <option value="">Pilih Role</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <table class="table text-base">
@@ -41,6 +52,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($data->isEmpty())
+                            <tr>
+                                <td colspan="8" class="text-center">Data tidak ditemukan.</td>
+                            </tr>
+                        @else
                         @foreach ($data as $user)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -82,6 +98,7 @@
                             </td>
                         </tr>
                         @endforeach
+                    @endif
                     </tbody>
                 </table>
                 <div class="my-5 w-1/2">

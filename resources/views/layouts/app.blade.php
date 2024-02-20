@@ -22,7 +22,7 @@
 </head>
 
 <body class="font-lora antialiased bg-base-content text-sm min-h-screen">
-    <div x-data="{ isOpen: true }" class="flex flex-col">
+    <div x-data="{ isOpen: true }" class="flex flex-col min-h-screen">
         <!-- Navbar -->
         @include('components.partials.navbar')
 
@@ -30,13 +30,13 @@
         @include('components.partials.sidebar')
 
         <!-- Main Content -->
-        <main :class="{'ml-44 pt-28': isOpen, 'ml-24 pt-16': !isOpen}" class="p-4">
+        <main :class="{'ml-64 pt-28': isOpen, 'ml-24 pt-16': !isOpen}" class="p-4">
             <!-- Your page content here -->
             @yield('content')
         </main>
 
         <!-- Footer -->
-        <div :class="{'inset-x-[8%]': isOpen, 'inset-x-[6%]': !isOpen}" class="fixed bottom-0 right-0">
+        <div :class="{'inset-x-[16%]': isOpen, 'inset-x-[6%]': !isOpen}" class="absolute bottom-0 right-0">
 
             <footer class="footer items-center p-4 text-base-100 px-10">
                 <aside class="items-center grid-flow-col">

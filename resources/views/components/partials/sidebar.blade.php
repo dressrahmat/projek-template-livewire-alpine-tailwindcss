@@ -1,8 +1,8 @@
-<div :class="{'w-20 pt-10': !isOpen, 'w-44 pt-20 ': isOpen}"
+<div :class="{'w-20 pt-10': !isOpen, 'w-64 pt-20 ': isOpen}"
     class="bg-neutral text-white shadow z-30 transition-width duration-300 fixed inset-y-0">
     <!-- Sidebar Content -->
-    <ul class="menu">
-        <li class="py-2 text-base bg-transparent">
+    <ul class="menu text-lg">
+        <li class="py-2 bg-transparent">
             <a href="#"="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('#') ? 'bg-gray-700' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -12,14 +12,14 @@
                 <span class="ml-2" x-show="isOpen">Dashboard</span>
             </a>
         </li>
-        <li class="py-2 text-base bg-transparent">
+        <li class="py-2 bg-transparent">
             <a href="#"
                 class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('#') ? 'bg-gray-700' : '' }}">
                 <i class="fa fa-solid fa-mosque"></i>
                 <span class="ml-2" x-show="isOpen">Masjid</span>
             </a>
         </li>
-        <li class="py-2 text-base bg-transparent">
+        <li class="py-2 bg-transparent">
             <details>
                 <summary class="bg-transparent">
                     <i class="fa fa-solid fa-toolbox"></i>
