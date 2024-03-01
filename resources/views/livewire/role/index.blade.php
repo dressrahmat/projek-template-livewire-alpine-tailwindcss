@@ -1,6 +1,6 @@
 <div>
     <div class="flex gap-x-2 text-base-100">
-        <div class="card card-side shadow-xl">
+        <div class="card card-side bg-gray-200 shadow-xl">
             <div class="card-body">
                 @if (session()->has('success'))
                 <div x-data="{ showNotification: true }" x-show="showNotification"
@@ -21,8 +21,8 @@
                 </div>
                 @endif
                 <div class="flex justify-between items-center mx-4 gap-x-9">
-                    <div class="border-l-8 border-accent px-4 py-4 my-2 bg-gray-100 shadow-md">
-                        <h1 class="text-xl font-bold">Data Role</h1>
+                    <div class="border-l-8 border-accent px-4 py-4 my-2 bg-gray-500 shadow-md">
+                        <h1 class="text-xl text-slate-50 font-bold">Data Role</h1>
                     </div>
                     <div>
                         <input type="text" wire:model.debounce.50ms="search" wire:keyup="refreshSearch"
