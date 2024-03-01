@@ -1,8 +1,8 @@
 <div>
-    <div class="card card-side shadow-xl">
+    <div class="card card-side bg-gray-200 shadow-xl">
         <div class="card-body">
-            <div class="border-l-8 border-primary px-4 py-4 my-2 bg-gray-100 shadow-md">
-                <h1 class="text-xl font-bold">Tambah User</h1>
+            <div class="border-l-8 border-primary px-4 py-4 my-2 bg-gray-500 w-fit shadow-md">
+                <h1 class="text-xl text-slate-50 font-bold">Tambah User</h1>
             </div>
             <!-- Tambah User Form -->
             <form wire:submit.prevent="store">
@@ -11,7 +11,7 @@
                     <label class="form-control">
                         <span class="label-text text-base-100 py-2">Nama User</span>
                         <input type="text" wire:model="name" placeholder="Masukkan nama user"
-                            class="input input-primary rounded-md bg-base-content text-base-100 @error('name') border-red-500 @enderror"
+                            class="input input-primary rounded-md bg-gray-100 text-base-100 @error('name') border-red-500 @enderror"
                             autofocus />
                         @error('name') <span class="error text-red-500">{{ $message }}</span> @enderror
                     </label>
@@ -22,7 +22,7 @@
                     <label class="form-control">
                         <span class="label-text text-base-100 py-2">Email User</span>
                         <input type="email" wire:model="email" placeholder="Masukkan email user"
-                            class="input input-primary rounded-md bg-base-content text-base-100 @error('email') border-red-500 @enderror" />
+                            class="input input-primary rounded-md bg-gray-100 text-base-100 @error('email') border-red-500 @enderror" />
                         @error('email') <span class="error text-red-500">{{ $message }}</span> @enderror
                     </label>
                 </div>
@@ -32,7 +32,7 @@
                     <label class="form-control">
                         <span class="label-text text-base-100 py-2">Password User</span>
                         <input type="password" wire:model="password" placeholder="Masukkan password user"
-                            class="input input-primary rounded-md bg-base-content text-base-100 @error('password') border-red-500 @enderror" />
+                            class="input input-primary rounded-md bg-gray-100 text-base-100 @error('password') border-red-500 @enderror" />
                         @error('password') <span class="error text-red-500">{{ $message }}</span> @enderror
                     </label>
                 </div>
