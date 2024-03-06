@@ -31,7 +31,7 @@
                         </div>
                         <div>
                             <select class="select select-primary w-full rounded-md bg-gray-100" wire:model="selectedRole" wire:change="refreshSearch">
-                                <option value="">Filter...</option>
+                                <option value="">Pilih Role</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->name }}">{{ $role->name }}</option>                                    
                                 @endforeach
