@@ -3,7 +3,7 @@
     <!-- Sidebar Content -->
     <ul class="menu text-lg">
         <li class="py-2 bg-transparent">
-            <a href="#"
+            <a href="{{route('dashboard')}}"
                 class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
