@@ -100,7 +100,7 @@
                     @endif
                     </tbody>
                 </table>
-                <div class="my-5 w-1/6">
+                <div class="my-5">
                     {{ $data->links('livewire.pagination-custom', ['paginatorName' => 'user_' . $id]) }}
                 </div>
             </div>
