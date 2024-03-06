@@ -1,6 +1,6 @@
 <div >
     <div class="flex gap-x-2 text-base-100">
-        <div class="card bg-gray-200 card-side w-2/3 shadow-xl">
+        <div class="card bg-gray-200 card-side basis-2/3 shadow-xl">
             <div class="card-body">
                 @if (session()->has('success'))
                 <div x-data="{ showNotification: true }" x-show="showNotification"
@@ -106,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full ">
+        <div class="basis-1/3">
             @if ($update)
             @include('livewire.user.edit')
             @else
