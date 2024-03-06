@@ -31,10 +31,9 @@
                         </div>
                         <div>
                             <select class="select select-primary w-full rounded-md bg-gray-100" wire:model="selectedRole" wire:change="refreshSearch">
-                                <option value="">Pilih Role</option>
+                                <option value="">Filter...</option>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                    
+                                    <option value="{{ $role->name }}">{{ $role->name }}</option>                                    
                                 @endforeach
                             </select>
                         </div>
@@ -101,7 +100,7 @@
                     @endif
                     </tbody>
                 </table>
-                <div class="my-5 w-1/2">
+                <div class="my-5 w-1/6">
                     {{ $data->links('livewire.pagination-custom', ['paginatorName' => 'user_' . $id]) }}
                 </div>
             </div>
