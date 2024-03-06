@@ -11,6 +11,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $perPage = 5;
+
     public $search = '';
 
     public $name;
@@ -204,7 +206,7 @@ class Index extends Component
             });
         }
     
-        $data = $query->paginate(5);
+        $data = $query->paginate($this->perPage);
 
         return view('livewire.user.index', compact(['data', 'roles']));
     }

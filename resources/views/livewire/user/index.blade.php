@@ -24,18 +24,29 @@
                     <div class="border-l-8 border-primary px-4 py-4 my-2 bg-gray-500 w-fit shadow-md">
                         <h1 class="text-xl text-slate-50 font-bold">Data User</h1>
                     </div>
-                    <div class="flex flex-col gap-y-1">
-                        <div>
-                            <input type="text" wire:model.debounce.50ms="search" wire:keyup="refreshSearch"
-                                class="border border-gray-300 px-3 py-1 mt-2 rounded-md" placeholder="Cari...">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="flex justify-end gap-y-1">
+                            <div class="self-end">
+                                <select wire:model="perPage" class="select select-primary w-full rounded-md bg-gray-100" wire:change="refreshSearch">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <select class="select select-primary w-full rounded-md bg-gray-100" wire:model="selectedRole" wire:change="refreshSearch">
-                                <option value="">Pilih Role</option>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>                                    
-                                @endforeach
-                            </select>
+                        <div class="flex flex-col gap-y-1">
+                            <div>
+                                <input type="text" wire:model.debounce.50ms="search" wire:keyup="refreshSearch"
+                                    class="border border-gray-300 px-3 py-1 mt-2 rounded-md" placeholder="Cari...">
+                            </div>
+                            <div>
+                                <select class="select select-primary w-full rounded-md bg-gray-100" wire:model="selectedRole" wire:change="refreshSearch">
+                                    <option value="">Pilih Role</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>                                    
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,10 +101,7 @@
                                         </li>
                                     </ul>
                                 </div>
-
                                 </a>
-
-
                             </td>
                         </tr>
                         @endforeach
