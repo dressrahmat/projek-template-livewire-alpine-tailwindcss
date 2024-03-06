@@ -23,24 +23,27 @@ class UserRoleSeeder extends Seeder
 
         DB::beginTransaction();
         try {
-            Role::create(['name' => 'superadmin']);
             Role::create(['name' => 'admin']);
-            Role::create(['name' => 'ustadz']);
-            Role::create(['name' => 'santri']);
+            Role::create(['name' => 'penulis']);
+            Role::create(['name' => 'pembaca']);
 
-            $superadmin = User::create(array_merge([
-                'name' => 'superadmin',
-                'email' => 'superadmin@gmail.com',
-            ], $default_user_value));
-
-            $superadmin->assignRole('superadmin');
-
-            $admin = User::create(array_merge([
+            $penulis = User::create(array_merge([
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
             ], $default_user_value));
 
-            $admin->assignRole('admin');
+            $penulis->assignRole('admin');
+
+            $penulis = User::create(array_merge([
+                'name' => 'dedy',
+                'email' => 'dedy@gmail.com',
+            ], $default_user_value));
+
+            $penulis->assignRole('penulis');
+
+            $pembaca = User::factory()->count(350)->create()->each(function ($user) {
+                $user->assignRole('pembaca');
+            });
 
             DB::commit();
         } catch (\Throwable $th) {

@@ -1,9 +1,10 @@
-<div :class="{'w-20 pt-10': !isOpen, 'w-64 pt-20 ': isOpen}"
+<div :class="{'w-20 pt-10': !isOpen, 'w-64 pt-20': isOpen}"
     class="bg-neutral text-white shadow z-30 transition-width duration-300 fixed inset-y-0">
     <!-- Sidebar Content -->
     <ul class="menu text-lg">
         <li class="py-2 bg-transparent">
-            <a href="#"="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('#') ? 'bg-gray-700' : '' }}">
+            <a href="#"
+                class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -14,13 +15,13 @@
         </li>
         <li class="py-2 bg-transparent">
             <a href="#"
-                class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('#') ? 'bg-gray-700' : '' }}">
+                class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('masjid') ? 'bg-gray-700' : '' }}">
                 <i class="fa fa-solid fa-mosque"></i>
                 <span class="ml-2" x-show="isOpen">Masjid</span>
             </a>
         </li>
         <li class="py-2 bg-transparent">
-            <details>
+            <details {{ request()->routeIs('permission.*') || request()->routeIs('role.*') || request()->routeIs('user.*') ? 'open' : '' }}>
                 <summary class="bg-transparent">
                     <i class="fa fa-solid fa-toolbox"></i>
                     <span class="ml-2" x-show="isOpen">Setting</span>
@@ -38,11 +39,12 @@
                             <span class="ml-2" x-show="isOpen">Role</span>
                         </a>
                     </li>
-                    <li><a href="{{route('user.index')}}" class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('user.index') ? 'bg-gray-700' : '' }}">
-                        <i class="fas fa-user"></i>
-                        <span class="ml-2" x-show="isOpen">User</span>
-                    </a>
-                </li>
+                    <li><a href="{{route('user.index')}}"
+                            class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('user.index') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-user"></i>
+                            <span class="ml-2" x-show="isOpen">User</span>
+                        </a>
+                    </li>
                 </ul>
             </details>
         </li>
