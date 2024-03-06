@@ -58,7 +58,7 @@
                         @else
                         @foreach ($data as $user)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data->firstItem() + $loop->index }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ implode(', ', $user->getRoleNames()->toArray()) }}</td>
