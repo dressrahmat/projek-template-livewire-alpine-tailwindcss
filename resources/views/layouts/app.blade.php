@@ -16,7 +16,7 @@
 </head>
 <body class="font-lora antialiased bg-base-content text-sm">
 
-    <div x-data="{ isLoading: true }" x-init="() => { setTimeout(() => { isLoading = false; }, 2000); }">
+    {{-- <div x-data="{ isLoading: true }" x-init="() => { setTimeout(() => { isLoading = false; }, 2000); }">
         <template x-if="isLoading">
             <div id="loading-spinner" class="fixed top-0 left-0 w-full h-full bg-gray-950 bg-opacity-90 flex items-center justify-center z-50">
                 <div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </template>
-    </div>
+    </div> --}}
 
     <div x-data="{ isOpen: true }" class="flex flex-col relative min-h-screen">
         <!-- Navbar -->
