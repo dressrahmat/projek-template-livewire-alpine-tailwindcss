@@ -44,6 +44,11 @@ class Index extends Component
         'password' => 'required',
     ];
 
+    public function mount()
+    {
+        $this->id = auth()->user()->id;
+    }
+
     public function resetFields()
     {
         $this->name = '';
@@ -51,6 +56,7 @@ class Index extends Component
         $this->password = '';
         $this->selectedRoles = [];
         $this->selectedRole;
+        $this->dispatch('$refresh');
     }
 
     public function updatingSearch()
@@ -89,7 +95,7 @@ class Index extends Component
 
             // Reset Form Fields After Creating User
             $this->cancel();
-            $this->dispatch('refresh');
+            $this->dispatch('$refresh');
         } catch (\Exception $e) {
             // Set Flash Message
             session()->flash('error', 'Something goes wrong while creating user!!');

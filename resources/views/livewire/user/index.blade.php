@@ -1,6 +1,6 @@
 <div >
-    <div class="flex gap-x-2 text-base-100">
-        <div class="card bg-gray-200 card-side basis-2/3 shadow-xl">
+    <div class="flex flex-col xl:flex-row gap-2 text-base-100">
+        <div class="card bg-gray-200 card-side basis-2/3 shadow-xl overflow-auto">
             <div class="card-body">
                 @if (session()->has('success'))
                 <div x-data="{ showNotification: true }" x-show="showNotification"
@@ -35,9 +35,10 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-y-1">
-                            <div>
+                            <div class="relative">
                                 <input type="text" wire:model.debounce.50ms="search" wire:keyup="refreshSearch"
-                                    class="border border-gray-300 px-3 py-1 mt-2 rounded-md" placeholder="Cari...">
+                                    class="input input-primary bg-gray-100 border border-gray-300 px-3 py-1 mt-2 rounded-md" placeholder="Cari...">
+                                    <i class="fas fa-search text-md my-1  absolute top-1/2 transform -translate-y-1/2 right-3 rounded-sm"></i>
                             </div>
                             <div>
                                 <select class="select select-primary w-full rounded-md bg-gray-100" wire:model="selectedRole" wire:change="refreshSearch">
@@ -78,21 +79,25 @@
                                     <div tabindex="0" role="button" class="btn btn-xs rounded-md btn-neutral m-1"><i
                                             class="fas fa-eye"></i></div>
                                     <ul tabindex="0"
-                                        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-24">
+                                        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit">
                                         <li class="my-1">
                                             <a href="{{ route('profile.edit', $user->id) }}"
-                                                class="btn btn-xs rounded-md btn-success">Profile
+                                                class="btn btn-xs rounded-md btn-success">
+                                                <i class="far fa-id-card text-base"></i>
                                             </a>
                                         </li>
                                         <li class="my-1">
                                             <a wire:click.prevent="updateAksiId({{ $user->id }})"
                                                 wire:key="{{ $user->id }}"
-                                                class="btn btn-xs rounded-md btn-primary">Edit
+                                                class="btn btn-xs rounded-md btn-primary">
+                                                <i class="fas fa-edit text-base"></i>
                                             </a>
                                         </li>
 
                                         <li class="my-1">
-                                            <button class="btn btn-xs rounded-md bg-red-900" wire:click="$dispatch('openModal', { component: 'user.delete', arguments: { user: {{ $user->id }} }})">Delete</button>
+                                            <button class="btn btn-xs rounded-md bg-red-900" wire:key="{{ $user->id }}" wire:click="$dispatch('openModal', { component: 'user.delete', arguments: { user: {{ $user->id }} }})">
+                                                <i class="fas fa-trash-alt text-base"></i>
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>

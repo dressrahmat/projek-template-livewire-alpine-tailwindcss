@@ -1,4 +1,4 @@
-<div :class="{'inset-x-[16%]': isOpen, 'inset-x-[6%]': !isOpen}" class="absolute bottom-0 right-0">
+<div :class="{'inset-x-0 md:inset-x-[16%]': isOpen, 'inset-x-[6%]': !isOpen}" class="absolute bottom-0 right-0">
 
     <footer class="footer items-center p-4 text-base-100 px-10">
         <aside class="items-center grid-flow-col">

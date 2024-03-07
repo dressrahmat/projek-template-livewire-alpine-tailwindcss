@@ -7,20 +7,17 @@
             </div>
             <button @click="isOpen = !isOpen" class="p-2 ">
                 <!-- Toggle -->
-                <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16M4 12h16" />
-                </svg>
-                <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 8h5M15 8h5M4 16h16M4 12h16" />
-                </svg>
+                <div x-show="isOpen" class="ml-6">
+                    <i class="far fa-caret-square-left text-2xl"></i>
+                </div>
+                <div x-show="!isOpen">
+                    <i class="far fa-caret-square-right text-2xl"></i>
+                </div>
             </button>
         </div>
 
         <!-- Navbar -->
-        <div :class="{'w-10/12': isOpen, 'w-11/12': !isOpen}" class="flex justify-between transition-all duration-500">
+        <div :class="{'w-10/12': isOpen, 'w-11/12': !isOpen}" class="flex py-3 justify-between transition-all duration-500">
             <p class="font-bold">Simple Projek
                 <span class="font-normal block">Jadikan sistem manajemen instansi anda menjadi lebih optimal dan efisien
                     dengan Simple Projek</span>
