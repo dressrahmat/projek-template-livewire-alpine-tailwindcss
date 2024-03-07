@@ -92,12 +92,7 @@
                                         </li>
 
                                         <li class="my-1">
-                                            <a class="btn btn-xs rounded-md bg-red-900" type="button"
-                                                wire:click.defer="delete({{ $user->id }})"
-                                                wire:confirm="Are you sure you want to delete this post? {{ $user->id }}"
-                                                wire:key="{{ $user->id }}">
-                                                Delete
-                                            </a>
+                                            <button class="btn btn-xs rounded-md bg-red-900" wire:click="$dispatch('openModal', { component: 'user.delete', arguments: { user: {{ $user->id }} }})">Delete</button>
                                         </li>
                                     </ul>
                                 </div>

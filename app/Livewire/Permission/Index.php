@@ -120,7 +120,7 @@ class Index extends Component
     public function render()
     {
         $data = Permission::where('name', 'like', '%'.$this->search.'%')
-                ->paginate(5);
+            ->paginate(5);
 
         return view('livewire.permission.index', compact(['data']));
     }

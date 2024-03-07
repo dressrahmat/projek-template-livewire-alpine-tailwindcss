@@ -180,7 +180,7 @@ class Index extends Component
     public function render()
     {
         $data = Role::where('name', 'like', '%'.$this->search.'%')
-                ->paginate(5);
+            ->paginate(5);
         $permissions = Permission::get();
 
         return view('livewire.role.index', compact(['data', 'permissions']));

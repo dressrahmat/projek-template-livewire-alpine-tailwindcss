@@ -129,59 +129,44 @@ class Index extends Component
     }
 
     public function edit()
-{
-    $user = User::find($this->id);
-
-    try {
-        // Update user information
-        $userData = [
-            'name' => $this->nameId,
-            'email' => $this->emailId,
-        ];
-
-        // Check if password is not empty, then update password
-        if (!empty($this->passwordId)) {
-            $userData['password'] = bcrypt($this->passwordId);
-        }
-
-        $user->update($userData);
-
-        // Filter selected roles
-        $selectedRoleIds = array_keys(array_filter($this->selectedRolesIds));
-
-        // Attach Roles to User
-        if (!empty($selectedRoleIds)) {
-            $roles = Role::whereIn('id', $selectedRoleIds)->get();
-            $user->syncRoles($roles);
-        } else {
-            // If no roles selected, sync with empty roles
-            $user->syncRoles([]);
-        }
-
-        // Set Flash Message
-        session()->flash('success', 'User Updated Successfully!!');
-
-        // Reset fields and cancel edit mode
-        $this->cancel();
-        $this->dispatch('refresh');
-    } catch (\Exception $e) {
-        session()->flash('error', 'Something goes wrong while updating user!!');
-        $this->cancel();
-    }
-}
-
-    public function delete($id)
     {
-        try {
-            // Lakukan operasi penghapusan data sesuai dengan $deleteId
-            User::findOrFail($id)->delete();
+        $user = User::find($this->id);
 
-            // Setelah penghapusan berhasil, atur pesan sukses
-            session()->flash('success', 'User successfully deleted.');
-            $this->dispatch('refresh');
+        try {
+            // Update user information
+            $userData = [
+                'name' => $this->nameId,
+                'email' => $this->emailId,
+            ];
+
+            // Check if password is not empty, then update password
+            if (! empty($this->passwordId)) {
+                $userData['password'] = bcrypt($this->passwordId);
+            }
+
+            $user->update($userData);
+
+            // Filter selected roles
+            $selectedRoleIds = array_keys(array_filter($this->selectedRolesIds));
+
+            // Attach Roles to User
+            if (! empty($selectedRoleIds)) {
+                $roles = Role::whereIn('id', $selectedRoleIds)->get();
+                $user->syncRoles($roles);
+            } else {
+                // If no roles selected, sync with empty roles
+                $user->syncRoles([]);
+            }
+
+            // Set Flash Message
+            session()->flash('success', 'User Updated Successfully!!');
+
+            // Reset fields and cancel edit mode
+            $this->cancel();
+            $this->dispatch('$refresh');
         } catch (\Exception $e) {
-            // Jika ada kesalahan saat penghapusan, atur pesan error
-            session()->flash('error', 'Failed to delete User.');
+            session()->flash('error', 'Something goes wrong while updating user!!');
+            $this->cancel();
         }
     }
 
@@ -189,8 +174,8 @@ class Index extends Component
     {
         $query = User::query();
         $roles = Role::get();
-        
-        if (!is_null($this->selectedRole)) {
+
+        if (! is_null($this->selectedRole)) {
             $role = Role::where('name', $this->selectedRole)->first();
             if ($role) {
                 $query->whereHas('roles', function ($q) use ($role) {
@@ -198,14 +183,14 @@ class Index extends Component
                 });
             }
         }
-    
-        if (!empty($this->search)) {
-            $query->where(function($query) {
-            $query->where('name', 'like', '%'.$this->search.'%')
-                ->orWhere('email', 'like', '%'.$this->search.'%');
+
+        if (! empty($this->search)) {
+            $query->where(function ($query) {
+                $query->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('email', 'like', '%'.$this->search.'%');
             });
         }
-    
+
         $data = $query->paginate($this->perPage);
 
         return view('livewire.user.index', compact(['data', 'roles']));

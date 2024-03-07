@@ -3,9 +3,9 @@
 namespace App\Livewire\Profile;
 
 use App\Models\Profile;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 
 class Edit extends Component
 {
@@ -85,86 +85,86 @@ class Edit extends Component
     public function render()
     {
         $profile = Profile::where('id_user', $this->user->id)->first();
+
         return view('livewire.profile.edit')->with('profile', $profile);
     }
 
     public function update()
-{
-    $this->validate();
-    try {
-        // Periksa apakah profil pengguna sudah ada atau belum
-        $profile = Profile::where('id_user', $this->user->id)->first();
+    {
+        $this->validate();
+        try {
+            // Periksa apakah profil pengguna sudah ada atau belum
+            $profile = Profile::where('id_user', $this->user->id)->first();
 
-        // Periksa apakah ada file foto yang diunggah
-        if ($this->photo_profile !== null && $this->photo_profile instanceof \Illuminate\Http\UploadedFile) { // Periksa jika gambar diunggah dan merupakan instance dari UploadedFile
-            $folderPath = 'uploads/profile/';
-            $fileName = time().'.'.$this->photo_profile->getClientOriginalExtension();
-            $this->photo_profile->storeAs('public/'.$folderPath, $fileName);
-            $this->photo_profile = 'storage/'.$folderPath.$fileName;
-        }
-
-        // Jika profil sudah ada, lakukan pembaruan data
-        if ($profile) {
-            // Dapatkan path foto profil lama
-            $oldPhotoPath = $profile->photo_profile;
-            // Lakukan pembaruan data profil
-            $profile->update([
-                'nama_depan' => $this->nama_depan,
-                'nama_belakang' => $this->nama_belakang,
-                'tanggal_lahir' => $this->tanggal_lahir,
-                'nomor_telepon' => $this->nomor_telepon,
-                'status_pernikahan' => $this->status_pernikahan,
-                'pendidikan_terakhir' => $this->pendidikan_terakhir,
-                'jenis_kelamin' => $this->jenis_kelamin,
-                'agama' => $this->agama,
-                'provinsi' => $this->provinsi,
-                'kota' => $this->kota,
-                'alamat' => $this->alamat,
-                'bio' => $this->bio,
-                'amanah' => $this->amanah,
-            ]);
-
-            // Periksa apakah ada file foto baru yang diunggah
-            if ($this->photo_profile) {
-                // Hapus foto profil lama dari storage
-                if ($oldPhotoPath && Storage::exists($oldPhotoPath)) {
-                    Storage::delete($oldPhotoPath);
-                }
-
-                // Simpan foto profil baru
-                $profile->update(['photo_profile' => $this->photo_profile]);
+            // Periksa apakah ada file foto yang diunggah
+            if ($this->photo_profile !== null && $this->photo_profile instanceof \Illuminate\Http\UploadedFile) { // Periksa jika gambar diunggah dan merupakan instance dari UploadedFile
+                $folderPath = 'uploads/profile/';
+                $fileName = time().'.'.$this->photo_profile->getClientOriginalExtension();
+                $this->photo_profile->storeAs('public/'.$folderPath, $fileName);
+                $this->photo_profile = 'storage/'.$folderPath.$fileName;
             }
-        } else {
-            // Jika profil belum ada, lakukan pembuatan profil baru
-            Profile::create([
-                'id_user' => $this->user->id,
-                'nama_depan' => $this->nama_depan,
-                'nama_belakang' => $this->nama_belakang,
-                'tanggal_lahir' => $this->tanggal_lahir,
-                'nomor_telepon' => $this->nomor_telepon,
-                'status_pernikahan' => $this->status_pernikahan,
-                'pendidikan_terakhir' => $this->pendidikan_terakhir,
-                'jenis_kelamin' => $this->jenis_kelamin,
-                'agama' => $this->agama,
-                'provinsi' => $this->provinsi,
-                'kota' => $this->kota,
-                'alamat' => $this->alamat,
-                'bio' => $this->bio,
-                'amanah' => $this->amanah,
-                'photo_profile' => $this->photo_profile,
-            ]);
+
+            // Jika profil sudah ada, lakukan pembaruan data
+            if ($profile) {
+                // Dapatkan path foto profil lama
+                $oldPhotoPath = $profile->photo_profile;
+                // Lakukan pembaruan data profil
+                $profile->update([
+                    'nama_depan' => $this->nama_depan,
+                    'nama_belakang' => $this->nama_belakang,
+                    'tanggal_lahir' => $this->tanggal_lahir,
+                    'nomor_telepon' => $this->nomor_telepon,
+                    'status_pernikahan' => $this->status_pernikahan,
+                    'pendidikan_terakhir' => $this->pendidikan_terakhir,
+                    'jenis_kelamin' => $this->jenis_kelamin,
+                    'agama' => $this->agama,
+                    'provinsi' => $this->provinsi,
+                    'kota' => $this->kota,
+                    'alamat' => $this->alamat,
+                    'bio' => $this->bio,
+                    'amanah' => $this->amanah,
+                ]);
+
+                // Periksa apakah ada file foto baru yang diunggah
+                if ($this->photo_profile) {
+                    // Hapus foto profil lama dari storage
+                    if ($oldPhotoPath && Storage::exists($oldPhotoPath)) {
+                        Storage::delete($oldPhotoPath);
+                    }
+
+                    // Simpan foto profil baru
+                    $profile->update(['photo_profile' => $this->photo_profile]);
+                }
+            } else {
+                // Jika profil belum ada, lakukan pembuatan profil baru
+                Profile::create([
+                    'id_user' => $this->user->id,
+                    'nama_depan' => $this->nama_depan,
+                    'nama_belakang' => $this->nama_belakang,
+                    'tanggal_lahir' => $this->tanggal_lahir,
+                    'nomor_telepon' => $this->nomor_telepon,
+                    'status_pernikahan' => $this->status_pernikahan,
+                    'pendidikan_terakhir' => $this->pendidikan_terakhir,
+                    'jenis_kelamin' => $this->jenis_kelamin,
+                    'agama' => $this->agama,
+                    'provinsi' => $this->provinsi,
+                    'kota' => $this->kota,
+                    'alamat' => $this->alamat,
+                    'bio' => $this->bio,
+                    'amanah' => $this->amanah,
+                    'photo_profile' => $this->photo_profile,
+                ]);
+            }
+
+            // Tampilkan pesan sukses kepada pengguna
+            session()->flash('success', 'Profil berhasil diperbarui.');
+
+            // Reset semua input setelah pembaruan berhasil
+            // $this->reset();
+            $this->dispatch('refresh');
+        } catch (\Exception $e) {
+            // Tangani pengecualian di sini
+            session()->flash('error', 'Terjadi kesalahan saat memperbarui profil: ');
         }
-
-        // Tampilkan pesan sukses kepada pengguna
-        session()->flash('success', 'Profil berhasil diperbarui.');
-
-        // Reset semua input setelah pembaruan berhasil
-        // $this->reset();
-        $this->dispatch('refresh');
-    } catch (\Exception $e) {
-        // Tangani pengecualian di sini
-        session()->flash('error', 'Terjadi kesalahan saat memperbarui profil: ');
     }
-}
-
 }

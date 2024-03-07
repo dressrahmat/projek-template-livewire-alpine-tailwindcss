@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SuperAdmin\RoleController;
-use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\SuperAdmin\PermissionController;
 use App\Http\Controllers\SuperAdmin\ProfileController as ProfileUser;
+use App\Http\Controllers\SuperAdmin\RoleController;
+use App\Http\Controllers\SuperAdmin\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
