@@ -38,7 +38,7 @@
                             <div class="relative">
                                 <input type="text" wire:model.debounce.50ms="search" wire:keyup="refreshSearch"
                                     class="input input-primary bg-gray-100 border border-gray-300 px-3 py-1 mt-2 rounded-md" placeholder="Cari...">
-                                    <i class="fas fa-search text-md my-1  absolute top-1/2 transform -translate-y-1/2 right-3 rounded-sm"></i>
+                                    <i class="fas fa-search text-lg my-1  absolute top-1/2 transform -translate-y-1/2 right-4 rounded-sm"></i>
                             </div>
                             <div>
                                 <select class="select select-primary w-full rounded-md bg-gray-100" wire:model="selectedRole" wire:change="refreshSearch">
