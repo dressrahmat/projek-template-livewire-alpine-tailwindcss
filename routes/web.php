@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SuperAdmin\PermissionController;
-use App\Http\Controllers\SuperAdmin\ProfileController as ProfileUser;
+use App\Http\Controllers\SuperAdmin\BlogController;
 use App\Http\Controllers\SuperAdmin\RoleController;
 use App\Http\Controllers\SuperAdmin\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuperAdmin\PermissionController;
+use App\Http\Controllers\SuperAdmin\ProfileController as ProfileUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{user}', [ProfileUser::class, 'edit'])->name('profile.edit');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 
     Route::get('/akun', [ProfileController::class, 'edit'])->name('akun.edit');
     Route::patch('/akun', [ProfileController::class, 'update'])->name('akun.update');

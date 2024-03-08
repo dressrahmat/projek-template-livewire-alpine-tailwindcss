@@ -9,11 +9,11 @@
                 <span class="ml-2" x-show="isOpen">Dashboard</span>
             </a>
         </li>
-        <li class="py-2 bg-transparent">
-            <a href="#"
-                class="flex items-center px-4 py-2 my-1 text-gray-200 {{ request()->routeIs('masjid') ? 'bg-gray-700' : '' }}">
-                <i class="fa fa-solid fa-mosque"></i>
-                <span class="ml-2" x-show="isOpen">Masjid</span>
+        <li class="py-2 {{ request()->routeIs('blog.index') ? 'glass rounded-md' : '' }}">
+            <a href="{{route('blog.index')}}"
+                class="flex items-center px-4 py-2 my-1 text-gray-200">
+                <i class="far fa-newspaper"></i>
+                <span class="ml-2" x-show="isOpen">Blog</span>
             </a>
         </li>
         <li class="py-2 {{ request()->routeIs('permission.*') || request()->routeIs('role.*') || request()->routeIs('user.*') ? 'glass rounded-md' : '' }}">
