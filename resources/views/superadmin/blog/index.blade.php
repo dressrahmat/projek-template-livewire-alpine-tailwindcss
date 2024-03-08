@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    {{-- @livewire('user.index') --}}
+    @livewire('blog.index')
 </div>
 @endsection
